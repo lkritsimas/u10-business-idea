@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import * as config from './config/app.json';
 
 const app: express.Application = express();
 
@@ -10,6 +11,6 @@ app.get('/', (req: express.Request, res: express.Response) => {
   res.send('Hello! This site will be a tinder app for developers. Stay tuned!');
 });
 
-app.listen(5000, () => {
-  console.log('Dev app listening on port 5000!');
+app.listen(config.port, () => {
+  console.log(`Listening on port ${config.port}`);
 });
