@@ -2,7 +2,7 @@ import { config } from 'dotenv';
 
 config({ path: './../.env' });
 
-export default {
+module.exports = {
   development: {
     dialect: 'postgres',
     host: process.env.DB_HOST,
