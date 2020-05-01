@@ -17,6 +17,7 @@
     "got": "^11.0.3",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
+    "pg": "^8.0.3",
     "sequelize": "^5.21.7"
   },
   "devDependencies": {
