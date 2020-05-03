@@ -6,6 +6,7 @@ export interface Messages {
   fromUserId: string;
   toUserId: string;
   message: string;
+  read: boolean;
 }
 
 export type MessagesStatic = typeof Model & {
