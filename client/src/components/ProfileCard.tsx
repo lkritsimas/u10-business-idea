@@ -55,7 +55,7 @@ const useStyles = makeStyles({
   },
   profileName: {
     fontWeight: 500,
-    fontSize: '1.2rem',
+    fontSize: '1.5rem',
   },
   profileText: {
     fontSize: '0.9rem',
