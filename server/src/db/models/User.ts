@@ -17,6 +17,12 @@ module.exports = (sequelize: Sequelize) => {
       allowNull: false,
     },
 
+    // GitHub
+    githubUsername: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
     // Personal details
     name: {
       type: DataTypes.STRING,

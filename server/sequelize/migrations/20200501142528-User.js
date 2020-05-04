@@ -13,6 +13,12 @@ module.exports = {
       allowNull: false,
     },
 
+    // GitHub
+    githubUsername: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+
     // Personal details
     name: {
       type: Sequelize.STRING,
