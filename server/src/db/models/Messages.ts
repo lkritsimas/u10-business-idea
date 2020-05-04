@@ -17,11 +17,7 @@ module.exports = (sequelize: Sequelize) => {
   }) as MessagesStatic;
 
   // @ts-ignore
-  messages.associate = ({ users }) => {
-    messages.belongsTo(users, {
-      onDelete: 'cascade',
-    });
-  };
+  // messages.associate = () => {};
 
   return messages;
 };

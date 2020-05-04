@@ -14,11 +14,7 @@ module.exports = (sequelize: Sequelize) => {
   }) as MatchesStatic;
 
   // @ts-ignore
-  matches.associate = ({ users }) => {
-    matches.belongsTo(users, {
-      onDelete: 'cascade',
-    });
-  };
+  // matches.associate = () => {};
 
   return matches;
 };

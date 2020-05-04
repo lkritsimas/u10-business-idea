@@ -1,7 +1,7 @@
 const { v1: uuidv1 } = require('uuid');
 
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('User', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('Users', {
     id: {
       type: Sequelize.UUID,
       defaultValue: uuidv1(),
@@ -26,6 +26,10 @@ module.exports = {
     },
     gender: {
       type: Sequelize.ENUM('M', 'F'),
+      allowNull: false,
+    },
+    attractedTo: {
+      type: Sequelize.ARRAY(Sequelize.ENUM(['M', 'F'])),
       allowNull: false,
     },
     age: {
@@ -88,5 +92,5 @@ module.exports = {
     },
   }),
 
-  down: (queryInterface, Sequelize) => queryInterface.dropTable('User'),
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('Users'),
 };

@@ -18,11 +18,7 @@ module.exports = (sequelize: Sequelize) => {
   }) as SwipesStatic;
 
   // @ts-ignore
-  swipes.associate = ({ users }) => {
-    swipes.belongsTo(users, {
-      onDelete: 'cascade',
-    });
-  };
+  // swipes.associate = () => {};
 
   return swipes;
 };
