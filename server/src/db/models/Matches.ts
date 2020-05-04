@@ -1,6 +1,4 @@
-import {
-  Sequelize, DataTypes, Model, BuildOptions,
-} from 'sequelize';
+import { Sequelize, DataTypes } from 'sequelize';
 import { v1 as uuidv1 } from 'uuid';
 import { MatchesStatic } from '../../types/matches';
 
@@ -16,12 +14,8 @@ module.exports = (sequelize: Sequelize) => {
   }) as MatchesStatic;
 
   // @ts-ignore
-  matches.associate = ({ user }) => {
-    matches.belongsTo(user, {
-      foreignKey: {
-        name: 'matchId',
-        field: 'id',
-      },
+  matches.associate = ({ users }) => {
+    matches.belongsTo(users, {
       onDelete: 'cascade',
     });
   };

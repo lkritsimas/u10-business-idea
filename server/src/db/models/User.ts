@@ -1,11 +1,9 @@
-import {
-  Sequelize, DataTypes, Model, BuildOptions,
-} from 'sequelize';
+import { Sequelize, DataTypes } from 'sequelize';
 import { v1 as uuidv1 } from 'uuid';
-import { UserStatic } from '../../types/user';
+import { UsersStatic } from '../../types/users';
 
 module.exports = (sequelize: Sequelize) => {
-  const user = sequelize.define('User', {
+  const users = sequelize.define('Users', {
     id: {
       type: DataTypes.UUID,
       defaultValue: uuidv1(),
@@ -95,11 +93,11 @@ module.exports = (sequelize: Sequelize) => {
         fields: ['disabled', 'position', 'gender', 'age'],
       },
     ],
-  }) as UserStatic;
+  }) as UsersStatic;
 
   // @ts-ignore
-  user.associate = ({ matches, messages }) => {
-    user.hasMany(matches, {
+  users.associate = ({ matches, messages }) => {
+    users.hasMany(matches, {
       foreignKey: {
         name: 'matchId',
         field: 'id',
@@ -107,14 +105,10 @@ module.exports = (sequelize: Sequelize) => {
       onDelete: 'cascade',
     });
 
-    user.hasMany(messages, {
-      foreignKey: {
-        name: 'messageId',
-        field: 'id',
-      },
+    users.hasMany(messages, {
       onDelete: 'cascade',
     });
   };
 
-  return user;
+  return users;
 };

@@ -1,6 +1,4 @@
-import {
-  Sequelize, DataTypes, Model, BuildOptions,
-} from 'sequelize';
+import { Sequelize, DataTypes } from 'sequelize';
 import { v1 as uuidv1 } from 'uuid';
 import { MessagesStatic } from '../../types/messages';
 
@@ -19,12 +17,8 @@ module.exports = (sequelize: Sequelize) => {
   }) as MessagesStatic;
 
   // @ts-ignore
-  messages.associate = ({ user }) => {
-    messages.belongsTo(user, {
-      foreignKey: {
-        name: 'messageId',
-        field: 'id',
-      },
+  messages.associate = ({ users }) => {
+    messages.belongsTo(users, {
       onDelete: 'cascade',
     });
   };

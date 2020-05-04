@@ -1,6 +1,6 @@
 import { Model, BuildOptions } from 'sequelize';
 
-export interface User {
+export interface Users {
   readonly id: string;
   disabled: boolean;
   githubUsername: string;
@@ -25,6 +25,6 @@ export interface User {
   refreshToken: string;
 }
 
-export type UserStatic = typeof Model & {
-  new(values?: object, options?: BuildOptions): User;
+export type UsersStatic = typeof Model & {
+  new(values?: object, options?: BuildOptions): Users;
 }
