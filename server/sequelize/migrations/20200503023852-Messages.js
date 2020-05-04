@@ -11,10 +11,7 @@ module.exports = {
     fromUserId: Sequelize.UUID,
     toUserId: Sequelize.UUID,
     message: Sequelize.STRING(2000),
-    read: {
-      type: Sequelize.BOOLEAN,
-      defaultValue: false,
-    },
+    read: Sequelize.DATEONLY,
 
     // Timestamps
     createdAt: {

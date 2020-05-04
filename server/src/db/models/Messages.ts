@@ -15,10 +15,7 @@ module.exports = (sequelize: Sequelize) => {
     fromUserId: DataTypes.UUID,
     toUserId: DataTypes.UUID,
     message: DataTypes.STRING(2000),
-    read: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
+    read: DataTypes.DATEONLY,
   }) as MessagesStatic;
 
   // @ts-ignore
