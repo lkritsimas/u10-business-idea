@@ -1,17 +1,17 @@
 import { Sequelize, DataTypes } from 'sequelize';
-import { v1 as uuidv1 } from 'uuid';
-import { UsersStatic } from '../../types/users';
+import { UsersStatic, Users } from '../../types/users';
 
 module.exports = (sequelize: Sequelize) => {
-  const users = sequelize.define('Users', {
+  const users = sequelize.define('users', {
     id: {
       type: DataTypes.UUID,
-      defaultValue: uuidv1(),
+      defaultValue: Sequelize.literal('uuid_generate_v4()'),
       primaryKey: true,
+      unique: true,
     },
-    disabled: {
+    discoverable: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false,
+      defaultValue: true,
       allowNull: false,
     },
 
@@ -93,25 +93,35 @@ module.exports = (sequelize: Sequelize) => {
   {
     indexes: [
       {
-        fields: ['disabled', 'position', 'gender', 'age'],
+        fields: ['discoverable', 'position', 'gender', 'age'],
       },
     ],
   }) as UsersStatic;
 
   // @ts-ignore
-  users.associate = ({ Matches, Messages, Swipes }) => {
-    users.hasMany(Swipes, {
+  users.associate = ({ matches, messages, swipes }) => {
+    users.hasMany(swipes, {
       foreignKey: 'fromUserId',
       onDelete: 'cascade',
     });
 
-    users.hasMany(Matches, {
+    users.hasMany(matches, {
+      foreignKey: 'userId1',
+      onDelete: 'cascade',
+    });
+
+    users.hasMany(matches, {
+      foreignKey: 'userId2',
+      onDelete: 'cascade',
+    });
+
+    users.hasMany(messages, {
       foreignKey: 'fromUserId',
       onDelete: 'cascade',
     });
 
-    users.hasMany(Messages, {
-      foreignKey: 'fromUserId',
+    users.hasMany(messages, {
+      foreignKey: 'toUserId',
       onDelete: 'cascade',
     });
   };

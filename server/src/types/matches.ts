@@ -2,8 +2,9 @@ import { Model, BuildOptions } from 'sequelize';
 
 export interface Matches {
   readonly id: string;
-  fromUserId: string;
-  toUserId: string;
+  userId1: string;
+  userId2: string;
+  unmatchedAt: string;
 }
 
 export type MatchesStatic = typeof Model & {

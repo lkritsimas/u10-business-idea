@@ -43,5 +43,6 @@ module.exports = {
         ts: 'never',
       },
     ],
+    'no-param-reassign': 0,
   },
 };

@@ -2,7 +2,7 @@ import { Model, BuildOptions } from 'sequelize';
 
 export interface Users {
   readonly id: string;
-  disabled: boolean;
+  discoverable: boolean;
   githubUsername: string;
   name: string;
   gender: string;

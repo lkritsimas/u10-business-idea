@@ -1,17 +1,35 @@
-const { v1: uuidv1 } = require('uuid');
-
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('Messages', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('messages', {
     id: {
       type: Sequelize.UUID,
-      defaultValue: uuidv1(),
+      defaultValue: Sequelize.literal('uuid_generate_v4()'),
       primaryKey: true,
     },
-    matchId: Sequelize.UUID,
-    fromUserId: Sequelize.UUID,
-    toUserId: Sequelize.UUID,
+    matchId: {
+      type: Sequelize.UUID,
+      allowNull: false,
+      references: {
+        model: 'matches',
+        key: 'id',
+      },
+    },
+    fromUserId: {
+      type: Sequelize.UUID,
+      allowNull: false,
+      references: {
+        model: 'users',
+        key: 'id',
+      },
+    },
+    toUserId: {
+      type: Sequelize.UUID,
+      allowNull: false,
+      references: {
+        model: 'users',
+        key: 'id',
+      },
+    },
     message: Sequelize.STRING(2000),
-    read: Sequelize.DATEONLY,
 
     // Timestamps
     createdAt: {
@@ -25,16 +43,17 @@ module.exports = {
       onUpdate: Sequelize.literal('CURRENT_TIMESTAMP'),
       allowNull: false,
     },
+    readAt: Sequelize.DATE,
   },
   {
     // Should not be unique - Needs fix
-    uniqueKeys: {
-      users: {
-        customIndex: true,
-        fields: ['matchId', 'fromUserId', 'toUserId'],
-      },
-    },
+    // uniqueKeys: {
+    //   Users: {
+    //     customIndex: true,
+    //     fields: ['matchId', 'fromUserId', 'toUserId'],
+    //   },
+    // },
   }),
 
-  down: (queryInterface, Sequelize) => queryInterface.dropTable('Messages'),
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('messages'),
 };

@@ -3,10 +3,10 @@ import { v1 as uuidv1 } from 'uuid';
 import { SwipesStatic } from '../../types/swipes';
 
 module.exports = (sequelize: Sequelize) => {
-  const swipes = sequelize.define('Swipes', {
+  const swipes = sequelize.define('swipes', {
     id: {
       type: DataTypes.UUID,
-      defaultValue: uuidv1(),
+      defaultValue: Sequelize.literal('uuid_generate_v4()'),
       primaryKey: true,
     },
     fromUserId: DataTypes.UUID, // Swiping user
@@ -18,7 +18,17 @@ module.exports = (sequelize: Sequelize) => {
   }) as SwipesStatic;
 
   // @ts-ignore
-  // swipes.associate = () => {};
+  swipes.associate = ({ users, matches }) => {
+    swipes.belongsTo(users, {
+      foreignKey: 'fromUserId',
+      onDelete: 'cascade',
+    });
+
+    swipes.belongsTo(users, {
+      foreignKey: 'toUserId',
+      onDelete: 'cascade',
+    });
+  };
 
   return swipes;
 };
