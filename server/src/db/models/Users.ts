@@ -1,5 +1,5 @@
 import { Sequelize, DataTypes } from 'sequelize';
-import { UsersStatic, Users } from '../../types/users';
+import { UsersStatic } from '../../types/users';
 
 module.exports = (sequelize: Sequelize) => {
   const users = sequelize.define('users', {

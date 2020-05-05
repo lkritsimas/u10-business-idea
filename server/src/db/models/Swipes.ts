@@ -1,5 +1,4 @@
 import { Sequelize, DataTypes } from 'sequelize';
-import { v1 as uuidv1 } from 'uuid';
 import { SwipesStatic } from '../../types/swipes';
 
 module.exports = (sequelize: Sequelize) => {
