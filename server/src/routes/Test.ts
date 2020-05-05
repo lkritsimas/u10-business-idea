@@ -5,13 +5,14 @@ const router = Router();
 
 router.get('/test', async (req: Request, res: Response) => {
   try {
-    const users = await models.Users.findAll({
+    const users = await models.users.findAll({
       include: [
-        { model: models.Swipes },
-        { model: models.Matches },
-        { model: models.Messages },
+        { model: models.swipes },
+        { model: models.matches },
+        { model: models.messages },
       ],
     });
+
     return res.status(200).json(users);
   } catch (error) {
     return res.status(500).json(error.message);
