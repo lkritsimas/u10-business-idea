@@ -10,7 +10,7 @@ const router = Router();
 router.get('/test', Test);
 router.get('/profile', Profile);
 router.get('/matches', Matches);
-router.get('/messages/:toUserId', Messages);
+router.get('/messages/:matchId', Messages);
 router.get('/discover', Discover);
 
 export default router;
