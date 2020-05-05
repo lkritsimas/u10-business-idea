@@ -25,11 +25,11 @@ module.exports = {
       allowNull: false,
     },
     gender: {
-      type: Sequelize.ENUM('M', 'F'),
+      type: Sequelize.ENUM(['M', 'F']),
       allowNull: false,
     },
     attractedTo: {
-      type: Sequelize.ARRAY(Sequelize.ENUM(['M', 'F'])),
+      type: Sequelize.ARRAY(Sequelize.ENUM('M', 'F')),
       allowNull: false,
     },
     age: {
@@ -83,13 +83,13 @@ module.exports = {
     },
   },
   {
-    // Should not be unique - Needs fix
-    uniqueKeys: {
-      users: {
-        customIndex: true,
-        fields: ['disabled', 'position', 'gender', 'age'],
-      },
-    },
+    // // Should not be unique - Needs fix
+    // uniqueKeys: {
+    //   users: {
+    //     customIndex: true,
+    //     fields: ['disabled', 'position', 'gender', 'age'],
+    //   },
+    // },
   }),
 
   down: (queryInterface, Sequelize) => queryInterface.dropTable('Users'),

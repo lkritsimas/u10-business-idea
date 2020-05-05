@@ -30,7 +30,10 @@ module.exports = (sequelize: Sequelize) => {
       type: DataTypes.ENUM('M', 'F'),
       allowNull: false,
     },
-    attractedTo: DataTypes.ARRAY(DataTypes.ENUM('M', 'F')),
+    attractedTo: {
+      type: DataTypes.ARRAY(DataTypes.ENUM('M', 'F')),
+      allowNull: false,
+    },
     age: {
       type: DataTypes.DATEONLY,
       allowNull: false,
@@ -98,14 +101,17 @@ module.exports = (sequelize: Sequelize) => {
   // @ts-ignore
   users.associate = ({ Matches, Messages, Swipes }) => {
     users.hasMany(Swipes, {
+      foreignKey: 'fromUserId',
       onDelete: 'cascade',
     });
 
     users.hasMany(Matches, {
+      foreignKey: 'fromUserId',
       onDelete: 'cascade',
     });
 
     users.hasMany(Messages, {
+      foreignKey: 'fromUserId',
       onDelete: 'cascade',
     });
   };
