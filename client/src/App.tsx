@@ -16,11 +16,6 @@ export const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-      <Paper>
-        <Typography variant="h3">Hello! </Typography>
-
-        <Button variant="outlined"> Material-UI </Button>
-      </Paper>
       <Router>
         <Nav />
         <Switch>
@@ -30,6 +25,11 @@ export const App: React.FC = () => {
           <Route path="/settings" component={Settings} />
         </Switch>
       </Router>
+      <Paper>
+        <Typography variant="h3">Hello! </Typography>
+
+        <Button variant="outlined"> Material-UI </Button>
+      </Paper>
     </ThemeProvider>
   );
 };

@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 
-import { BsChatDotsFill, BsCodeSlash, BsThreeDots } from 'react-icons/bs';
+import {
+  BsChatDotsFill,
+  BsCodeSlash,
+  BsThreeDots,
+  BsFillPersonFill,
+} from 'react-icons/bs';
 import { MdAccountCircle, MdSettings } from 'react-icons/md';
+import { RiAccountCircleLine } from 'react-icons/ri';
 import { FaCode } from 'react-icons/fa';
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import {
@@ -17,27 +23,39 @@ import { darkTheme, lightTheme } from '../theme';
 
 export const Nav: React.FC = () => {
   const [darkMode, setDarkMode] = useState(true);
-  const linkStyle = {
+  const leftIcon = {
     color: 'white',
+    transform: 'scale(1.7)',
+    marginTop: '3 px',
   };
+  const logo = {
+    color: 'red',
+    transform: 'scale(2)',
+  };
+
+  const rightIcon = {
+    color: 'white',
+    transform: 'scale(1.5)',
+  };
+
   const { pathname } = useLocation();
 
   let leftLink;
   if (pathname === '/profile') {
     leftLink = (
-      <Link to="/settings" style={linkStyle}>
+      <Link to="/settings" style={rightIcon}>
         <MdSettings />
       </Link>
     );
   } else if (pathname === '/chat') {
     leftLink = (
-      <Link to="/settings" style={linkStyle}>
+      <Link to="/settings" style={rightIcon}>
         <BsThreeDots />
       </Link>
     );
   } else {
     leftLink = (
-      <Link to="/chats" style={linkStyle}>
+      <Link to="/chats" style={rightIcon}>
         <BsChatDotsFill />
       </Link>
     );
@@ -55,21 +73,21 @@ export const Nav: React.FC = () => {
               alignItems="center"
             >
               <Grid item>
-                <MenuItem>
-                  <Link to="/profile" style={linkStyle}>
-                    <MdAccountCircle />
+                <MenuItem style={{ lineHeight: '0' }}>
+                  <Link to="/profile" style={leftIcon}>
+                    <BsFillPersonFill />
                   </Link>
                 </MenuItem>
               </Grid>
               <Grid item>
-                <MenuItem>
-                  <Link to="/#" style={linkStyle}>
-                    <FaCode />
+                <MenuItem style={{ lineHeight: '0' }}>
+                  <Link to="/#" style={logo}>
+                    <BsCodeSlash />
                   </Link>
                 </MenuItem>
               </Grid>
               <Grid item>
-                <MenuItem>{leftLink}</MenuItem>
+                <MenuItem style={{ lineHeight: '0' }}>{leftLink}</MenuItem>
               </Grid>
             </Grid>
           </Toolbar>
