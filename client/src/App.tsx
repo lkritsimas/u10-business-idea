@@ -1,23 +1,19 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Button, Typography, Paper } from '@material-ui/core';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { darkTheme, lightTheme } from './theme';
+import { ProfileCard } from './components/ProfileCard';
 
 export const App: React.FC = () => {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-      <Paper>
+      <CssBaseline>
+        <ProfileCard />
 
-        <Typography variant="h3">
-          Hello!
-        </Typography>
-
-        <Button variant="outlined"> Material-UI </Button>
-
-      </Paper>
+      </CssBaseline>
     </ThemeProvider>
   );
 };
