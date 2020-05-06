@@ -63,10 +63,10 @@
   "include": [
     "src/**/*",
     "config/**/*",
-    "tests/**/*"
+    "tests/**/*",
+    "sequelize/**/*"
   ],
   "exclude": [
-    "node_modules",
-    "sequelize"
+    "node_modules"
   ]
 }

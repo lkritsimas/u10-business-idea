@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
 import './App.css';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { darkTheme, lightTheme } from './theme';
+import { ProfileCard } from './components/ProfileCard';
+
+export const App: React.FC = () => {
+  const [darkMode, setDarkMode] = useState(false);
+
 
 import { Button, Typography, Paper } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -25,13 +33,9 @@ export const App: React.FC = () => {
           <Route path="/settings" component={Settings} />
         </Switch>
       </Router>
-      <Paper>
-        <Typography variant="h3">Hello! </Typography>
-
-        <Button variant="outlined"> Material-UI </Button>
-      </Paper>
+       <CssBaseline>
+          <ProfileCard />
+        </CssBaseline>
     </ThemeProvider>
   );
 };
-
-export default App;
