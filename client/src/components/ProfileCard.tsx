@@ -47,6 +47,10 @@ const useStyles = makeStyles({
   paper: {
     maxWidth: '640px',
     maxHeight: '800px',
+    height: '100%',
+  },
+  card: {
+    height: '100%',
   },
   avatar: {
     width: 60,
@@ -100,7 +104,7 @@ export const ProfileCard: React.FC<CardProps> = ({
   const classes = useStyles();
   return (
     <Paper elevation={0} className={classes.paper}>
-      <Card elevation={0}>
+      <Card elevation={0} className={classes.card}>
         {/* component="img" */}
         <CardMedia image={profileData.image} className={classes.profilePhoto}>
           <CardContent className={classes.overlay}>
