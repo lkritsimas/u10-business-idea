@@ -16,7 +16,7 @@ export const App: React.FC = () => {
   const [darkMode, setDarkMode] = useState(true);
 
   return (
-    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+    <ThemeProvider theme={darkMode ? lightTheme : darkTheme}>
       <Router>
         <Nav />
         <Switch>
@@ -26,9 +26,9 @@ export const App: React.FC = () => {
           <Route path="/settings" component={Settings} />
         </Switch>
       </Router>
-      {/* <CssBaseline>
+      <CssBaseline>
         <ProfileCard />
-      </CssBaseline> */}
+      </CssBaseline>
     </ThemeProvider>
   );
 };

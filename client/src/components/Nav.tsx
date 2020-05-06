@@ -28,7 +28,7 @@ import {
 const useStyles = makeStyles({
   root: {
     lineHeight: '0',
-    position: 'fixed',
+    position: 'static',
   },
   leftNavIcon: {
     transform: 'scale(1.7)',
@@ -76,8 +76,8 @@ export const Nav: React.FC = () => {
 
   return (
     <nav>
-      <AppBar className={classes.root}>
-        <Paper>
+      <AppBar className={classes.root} elevation={0}>
+        <Paper elevation={0}>
           <Toolbar>
             <Grid
               container
