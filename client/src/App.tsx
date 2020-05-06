@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import './App.css';
 import { Switch, CssBaseline } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { theme, GlobalCss } from './utilities/theme';
+import { theme } from './utilities/theme';
+import { GlobalCss } from './assets/GlobalCss';
 import { ProfileCard } from './components/ProfileCard';
 
 export const App: React.FC = () => {
