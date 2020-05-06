@@ -7,7 +7,7 @@ import {
   BsFillPersonFill,
 } from 'react-icons/bs';
 import { MdSettings } from 'react-icons/md';
-import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Link,
   BrowserRouter as Router,
@@ -15,21 +15,26 @@ import {
   Route,
   useLocation,
 } from 'react-router-dom';
-import { MenuList, MenuItem, Grid, AppBar, Toolbar } from '@material-ui/core';
-
-import { darkTheme, lightTheme } from '../theme';
+import {
+  MenuList,
+  MenuItem,
+  Grid,
+  AppBar,
+  Toolbar,
+  Paper,
+  Typography,
+} from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
-    background: '#424242',
     lineHeight: '0',
     position: 'fixed',
   },
   leftNavIcon: {
-    color: 'white',
     transform: 'scale(1.7)',
     marginTop: '3 px',
     lineHeight: '0',
+    color: 'inherit',
   },
 
   logo: {
@@ -38,9 +43,9 @@ const useStyles = makeStyles({
     lineHeight: '0',
   },
   rightNavIcon: {
-    color: 'white',
     transform: 'scale(1.5)',
     lineHeight: '0',
+    color: 'inherit',
   },
 });
 
@@ -72,32 +77,34 @@ export const Nav: React.FC = () => {
   return (
     <nav>
       <AppBar className={classes.root}>
-        <Toolbar>
-          <Grid
-            container
-            direction="row"
-            justify="space-between"
-            alignItems="center"
-          >
-            <Grid item>
-              <MenuItem>
-                <Link to="/profile" className={classes.leftNavIcon}>
-                  <BsFillPersonFill />
-                </Link>
-              </MenuItem>
+        <Paper>
+          <Toolbar>
+            <Grid
+              container
+              direction="row"
+              justify="space-between"
+              alignItems="center"
+            >
+              <Grid item>
+                <MenuItem>
+                  <Link to="/profile" className={classes.leftNavIcon}>
+                    <BsFillPersonFill />
+                  </Link>
+                </MenuItem>
+              </Grid>
+              <Grid item>
+                <MenuItem>
+                  <Link to="/#" className={classes.logo}>
+                    <BsCodeSlash />
+                  </Link>
+                </MenuItem>
+              </Grid>
+              <Grid item>
+                <MenuItem>{leftLink}</MenuItem>
+              </Grid>
             </Grid>
-            <Grid item>
-              <MenuItem>
-                <Link to="/#" className={classes.logo}>
-                  <BsCodeSlash />
-                </Link>
-              </MenuItem>
-            </Grid>
-            <Grid item>
-              <MenuItem>{leftLink}</MenuItem>
-            </Grid>
-          </Grid>
-        </Toolbar>
+          </Toolbar>
+        </Paper>
       </AppBar>
     </nav>
   );
