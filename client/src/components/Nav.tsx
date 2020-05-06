@@ -45,8 +45,6 @@ const useStyles = makeStyles({
 });
 
 export const Nav: React.FC = () => {
-  const [darkMode, setDarkMode] = useState(true);
-
   const classes = useStyles();
   const { pathname } = useLocation();
 
