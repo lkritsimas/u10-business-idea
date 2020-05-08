@@ -3,7 +3,6 @@ import './App.css';
 import {
   Switch as UiSwitch, CssBaseline,
 } from '@material-ui/core';
-
 import { ThemeProvider } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { theme } from './utilities/theme';
@@ -41,7 +40,6 @@ export const App: React.FC = () => {
           <Route path="/settings" component={Settings} />
         </Switch>
       </Router>
-
       <CssBaseline>
         <ProfileCard />
       </CssBaseline>
