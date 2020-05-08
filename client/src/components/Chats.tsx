@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
-import { Typography } from '@material-ui/core';
+import React from 'react';
 import {
   Link,
   BrowserRouter as Router,
-  Switch,
-  Route,
-  useLocation,
 } from 'react-router-dom';
-import { darkTheme, lightTheme } from '../theme';
 
 export const Chats: React.FC = () => (
   <div>

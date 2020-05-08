@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
-import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import React from 'react';
 import { Typography } from '@material-ui/core';
-
-import { darkTheme, lightTheme } from '../theme';
 
 export const Profile: React.FC = () => (
   <div>

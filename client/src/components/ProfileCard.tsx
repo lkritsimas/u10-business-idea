@@ -29,7 +29,7 @@ interface CardProps {
   githubData?: GithubCardProps;
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   overlay: {
     width: '100%',
     height: '100%',
@@ -41,12 +41,19 @@ const useStyles = makeStyles({
     textShadow: '1px 1px 1px black',
   },
   profilePhoto: {
-    height: '100vh',
+    height: 'calc(100vh - 56px)',
     maxHeight: '800px',
+    [theme.breakpoints.up('sm')]: {
+      height: 'calc(100vh - 64px)',
+    },
   },
   paper: {
     maxWidth: '640px',
     maxHeight: '800px',
+    height: '100%',
+  },
+  card: {
+    height: '100%',
   },
   avatar: {
     width: 60,
@@ -76,12 +83,12 @@ const useStyles = makeStyles({
     alignContent: 'flex-end',
     height: '100%',
   },
-});
-
+}));
 
 export const ProfileCard: React.FC<CardProps> = ({
   // Mock data
   profileData = {
+    // image: 'https://i.pinimg.com/originals/91/f2/c0/91f2c0ea84473ef5d3aec8db0635374a.jpg',
     // image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.-Uc1Nsa_FB0a5QR1pdnT5AHaJQ%26pid%3DApi&f=1',
     image: 'https://static0.srcdn.com/wordpress/wp-content/uploads/2018/12/The-Office-Michael-Scott-cringe-square.jpg',
     username: 'Michael Scott',
@@ -100,8 +107,7 @@ export const ProfileCard: React.FC<CardProps> = ({
   const classes = useStyles();
   return (
     <Paper elevation={0} className={classes.paper}>
-      <Card elevation={0}>
-        {/* component="img" */}
+      <Card elevation={0} className={classes.card}>
         <CardMedia image={profileData.image} className={classes.profilePhoto}>
           <CardContent className={classes.overlay}>
             <Grid container className={classes.gridContainer}>

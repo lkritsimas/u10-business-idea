@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-
+import React from 'react';
 import {
   BsChatDotsFill,
   BsCodeSlash,
@@ -11,18 +10,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   Link,
   BrowserRouter as Router,
-  Switch,
-  Route,
   useLocation,
 } from 'react-router-dom';
 import {
-  MenuList,
   MenuItem,
   Grid,
   AppBar,
   Toolbar,
   Paper,
-  Typography,
 } from '@material-ui/core';
 
 const useStyles = makeStyles({

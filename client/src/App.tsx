@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import './App.css';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import {
+  Switch as UiSwitch, CssBaseline,
+} from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { Button, Typography, Paper } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { darkTheme, lightTheme } from './theme';
+import { theme } from './utilities/theme';
+import { GlobalCss } from './assets/GlobalCss';
 import { ProfileCard } from './components/ProfileCard';
 import Nav from './components/Nav';
 import Chat from './components/Chat';
@@ -13,10 +15,22 @@ import Profile from './components/Profile';
 import Settings from './components/Settings';
 
 export const App: React.FC = () => {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState('dark');
+
+  React.useEffect(() => {
+    const data = localStorage.getItem('theme');
+    if (data) {
+      setDarkMode(JSON.parse(data));
+    }
+  }, []);
+
+  React.useEffect(() => {
+    localStorage.setItem('theme', JSON.stringify(darkMode));
+  });
 
   return (
-    <ThemeProvider theme={darkMode ? lightTheme : darkTheme}>
+    <ThemeProvider theme={theme(darkMode)}>
+      <GlobalCss />
       <Router>
         <Nav />
         <Switch>
@@ -29,6 +43,11 @@ export const App: React.FC = () => {
       <CssBaseline>
         <ProfileCard />
       </CssBaseline>
+      <UiSwitch
+        checked={darkMode === 'dark'}
+        onClick={(): void => (darkMode === 'dark'
+          ? setDarkMode('light') : setDarkMode('dark'))}
+      />
     </ThemeProvider>
   );
 };
