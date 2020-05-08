@@ -5,8 +5,13 @@ import uploadHandler, { UploadResponse } from '../helpers/UploadHandler';
 const router = Router();
 
 router.post('/upload', async (req: Request, res: Response) => {
-  const photo: UploadResponse = await uploadHandler(req, res);
-  // TODO: Store photo in database
+  try {
+    const photo: UploadResponse = await uploadHandler(req, res);
+    console.log(photo);
+    // TODO: Store photo in database
+  } catch (ex) {
+    console.log(ex);
+  }
 });
 
 export default router;

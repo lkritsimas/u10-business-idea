@@ -133,7 +133,7 @@ export default (req: Request, res: Response): Promise<UploadResponse> => {
       } catch (ex) {
         reject(ex);
         // Remove file
-        await fs.unlinkAsync(file.path);
+        await fs.unlinkAsync(file.path).catch((e: any) => reject(ex));
       }
     });
   });

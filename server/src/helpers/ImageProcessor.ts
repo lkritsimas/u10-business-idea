@@ -46,9 +46,10 @@ export const cropImage = async (
 
     image.toFile(outPath, (err: Error) => {
       if (err) {
-        return reject(err);
+        reject(err);
+        return;
       }
-      return resolve();
+      resolve();
     });
   });
 };
@@ -73,10 +74,11 @@ export const resizeMultiple = (
 
       image.toFile(outPath, (err: Error) => {
         if (err) {
-          return reject(err);
+          reject(err);
+          return;
         }
 
-        return resolve();
+        resolve();
       });
     }));
   });
