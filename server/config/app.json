@@ -1,3 +1,17 @@
 {
-  "port": 5000
+  "port": 5000,
+  "uploads": {
+    "maxFileSize": 15728640,
+    "allowedMimeTypes": [
+      "image/jpeg",
+      "image/jpg"
+    ],
+    "saveFormat": "webp",
+    "resize": [
+      { "width": 84, "height": 106 },
+      { "width": 172, "height": 216 },
+      { "width": 320, "height": 400 },
+      { "width": 640, "height": 800 }
+    ]
+  }
 }
