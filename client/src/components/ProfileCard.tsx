@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import { FormattedMessage } from 'react-intl';
 
 interface ProfileCardProps {
   image?: string;
@@ -116,31 +117,43 @@ export const ProfileCard: React.FC<CardProps> = ({
                   {`${profileData.username}, ${profileData.age}`}
                 </Typography>
                 <Typography className={classes.profileText}>
-                  {`${profileData.occupation}`}
-                  {profileData.company ? ` at ${profileData.company}` : ''}
+                  {`${profileData.occupation} `}
+                  {/* {profileData.company ? ` at ${profileData.company}` : ''} */}
+                  {profileData.company ? <FormattedMessage id="worksAt" values={{ company: profileData.company }} /> : ''}
                 </Typography>
                 <Typography className={classes.profileText}>
-                  {`${profileData.distance} Miles away`}
+                  <FormattedMessage
+                    id="ICU.milesAway"
+                    values={{ distance: profileData.distance }}
+                  />
                 </Typography>
               </Grid>
               <Grid item xs={6}>
-                {githubData
-                  ? (
-                    <Grid container className={classes.githubInsideContainer}>
-                      <Avatar alt="github image" src={githubData.image} className={classes.avatar} />
-                      <Grid>
-                        <Typography className={classes.githubName}>
-                          {githubData.username}
-                        </Typography>
-                        <Typography className={classes.githubText}>
-                          {`${githubData.commits} Commits`}
-                        </Typography>
-                        <Typography className={classes.githubText}>
-                          {`${githubData.projects} Projects`}
-                        </Typography>
-                      </Grid>
+                {githubData ? (
+                  <Grid container className={classes.githubInsideContainer}>
+                    <Avatar alt="github image" src={githubData.image} className={classes.avatar} />
+                    <Grid>
+                      <Typography className={classes.githubName}>
+                        {githubData.username}
+                      </Typography>
+                      <Typography className={classes.githubText}>
+                        {/* {`${githubData.commits} Commits`} */}
+                        <FormattedMessage
+                          id="ICU.commits"
+                          values={{ commits: githubData.commits }}
+                        />
+                      </Typography>
+                      <Typography className={classes.githubText}>
+                        {/* {`${githubData.projects} Projects`} */}
+                        {/* {githubData.projects} */}
+                        <FormattedMessage
+                          id="ICU.projects"
+                          values={{ projects: githubData.projects }}
+                        />
+                      </Typography>
                     </Grid>
-                  )
+                  </Grid>
+                )
                   : ''}
               </Grid>
             </Grid>
