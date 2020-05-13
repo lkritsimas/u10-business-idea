@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import {
-  Switch as UiSwitch, CssBaseline,
-} from '@material-ui/core';
+import { Switch as UiSwitch, CssBaseline } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { theme } from './utilities/theme';
@@ -13,6 +11,7 @@ import Chat from './components/Chat';
 import Chats from './components/Chats';
 import Profile from './components/Profile';
 import Settings from './components/Settings';
+import HomeGuest from './components/HomeGuest';
 
 export const App: React.FC = () => {
   const [darkMode, setDarkMode] = useState('dark');
@@ -45,9 +44,11 @@ export const App: React.FC = () => {
       </CssBaseline>
       <UiSwitch
         checked={darkMode === 'dark'}
-        onClick={(): void => (darkMode === 'dark'
-          ? setDarkMode('light') : setDarkMode('dark'))}
+        onClick={(): void =>
+          darkMode === 'dark' ? setDarkMode('light') : setDarkMode('dark')
+        }
       />
+      {/* <HomeGuest/> */}
     </ThemeProvider>
   );
 };
