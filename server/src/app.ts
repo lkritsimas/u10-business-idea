@@ -1,8 +1,12 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import socketIo from 'socket.io';
+import http from 'http';
 import * as config from '../config/app.json';
 import routes from './routes';
+import { Messages } from './types/messages';
+import models from './db/models';
 
 dotenv.config();
 const app: express.Application = express();
@@ -20,4 +24,43 @@ app.get('/', (req: express.Request, res: express.Response) => {
 });
 
 
-app.listen(app.get('port'), () => console.log(`Listening on port ${config.port}`));
+/* SocketIO */
+const server = http.createServer(app);
+
+const io = socketIo(server);
+
+io.on('connection', (socket: any) => {
+  console.log('New client connected');
+
+  socket.on('message', async (data: Messages) => {
+    const {
+      matchId,
+      fromUserId,
+      toUserId,
+      message,
+      // readAt,
+    } = data;
+
+    const match = await models.messages.findAll({
+      where: { matchId },
+    });
+
+    const chatMessage = await models.messages.create({
+      matchId,
+      fromUserId,
+      toUserId,
+      message,
+      // readAt,
+    });
+
+    io.emit('newMessage', chatMessage);
+  });
+
+
+  socket.on('disconnect', () => {
+    console.log('Client disconnected');
+  });
+});
+
+
+server.listen(config.port, () => console.log(`Listening on port ${config.port}`));
