@@ -1,13 +1,15 @@
 import { Router, Request, Response } from 'express';
-import uploadHandler, { UploadResponse } from '../helpers/UploadHandler';
+import UploadController, { UploadResponse } from '../controllers/UploadController';
 // import models from '../db/models';
 
 const router = Router();
 
 router.post('/upload', async (req: Request, res: Response) => {
   try {
-    const photo: UploadResponse = await uploadHandler(req, res);
-    console.log(photo);
+    const photo: UploadResponse = await UploadController(req, res);
+    // console.log(photo);
+    res.status(201).json({ success: true });
+
     // TODO: Store photo in database
   } catch (ex) {
     console.log(ex);

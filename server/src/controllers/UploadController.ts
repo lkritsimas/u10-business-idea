@@ -9,7 +9,7 @@ import { promisifyAll } from 'bluebird';
 import * as config from '../../config/app.json';
 import {
   isInvalidMimeType, resizeMultiple, cropImage, getImageMetadata, getExtensionFromMime,
-} from './ImageProcessor';
+} from '../helpers/ImageProcessor';
 
 const fs = promisifyAll(require('fs'));
 
@@ -70,9 +70,9 @@ export default (req: Request, res: Response): Promise<UploadResponse> => {
 
   // Emitted when the entire request has been received,
   // and all contained files have finished flushing to disk
-  form.once('end', () => {
-    res.status(200).json({ success: true });
-  });
+  // form.once('end', () => {
+  //   res.status(201).json({ success: true });
+  // });
 
   // Parse request
   const parsed = new Promise((resolve, reject) => {
