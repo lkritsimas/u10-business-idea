@@ -13,6 +13,7 @@ import Chat from './components/Chat';
 import Chats from './components/Chats';
 import Profile from './components/Profile';
 import Settings from './components/Settings';
+import { SelectLanguage } from './components/SelectLanguage';
 
 export const App: React.FC = () => {
   const [darkMode, setDarkMode] = useState('dark');
@@ -31,22 +32,21 @@ export const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme(darkMode)}>
       <GlobalCss />
+      <CssBaseline />
       <Router>
         <Nav />
         <Switch>
+          <Route path="/" component={ProfileCard} exact />
           <Route path="/chat" component={Chat} />
           <Route path="/chats" component={Chats} />
           <Route path="/profile" component={Profile} />
-          <Route path="/settings" component={Settings} />
+          <Route path="/settings" component={Settings} exact />
+          <Route path="/settings/language" component={SelectLanguage} />
         </Switch>
       </Router>
-      <CssBaseline>
-        <ProfileCard />
-      </CssBaseline>
       <UiSwitch
         checked={darkMode === 'dark'}
-        onClick={(): void => (darkMode === 'dark'
-          ? setDarkMode('light') : setDarkMode('dark'))}
+        onClick={(): void => (darkMode === 'dark' ? setDarkMode('light') : setDarkMode('dark'))}
       />
     </ThemeProvider>
   );
