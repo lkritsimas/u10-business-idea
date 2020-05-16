@@ -9,4 +9,6 @@ export default {
   commit: 'Commit',
   project: 'Project',
   projects: 'Projects',
+  send: 'Send',
+  'ChatMessage.type': 'Type a message...',
 };
