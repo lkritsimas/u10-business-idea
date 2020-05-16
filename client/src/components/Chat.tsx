@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Typography } from '@material-ui/core';
-import io from 'socket.io-client';
-import { getChatRoomMessages, ENDPOINT } from '../utilities/requests';
+import { Typography, makeStyles } from '@material-ui/core';
+import { useLocation, useParams } from 'react-router';
+import moment from 'moment';
+import { socket } from '../utilities/socket';
+import { Message } from './Message/Message';
+import { MessageInput } from './MessageInput/MessageInput';
 
 interface MessageProps {
   fromUserId: string;
@@ -11,11 +14,6 @@ interface MessageProps {
   readAt?: string;
   toUserId: string;
 }
-
-const socket = io(ENDPOINT);
-const matchId = '7e252825-888e-4b7b-9f1c-d381c255b50c';
-const fromUserId = 'c35b555b-6227-46cd-a26b-eda3bf9b39d9';
-const toUserId = '633f9577-c550-4983-bfbe-574a379ba175';
 
 /*
 X Send new msgs to node X
@@ -27,19 +25,33 @@ Error handling
 pagination
 fromUserId get the user name
 */
+// const matchId = '1b0923c6-86c4-474a-81d6-e5540b708093';
+const fromUserId = '1c5e1815-5ee0-4a52-8ca9-e6388c4dc096';
+const toUserId = 'c706e8ef-1726-4ab6-83b4-9b55b1a52498';
+const useStyles = makeStyles((theme) => ({
+  root: {
+  },
+  chatContainer: {
+    flex: 2,
+    padding: '8px',
+    overflowY: 'scroll',
+    overflowX: 'hidden',
+  },
+}));
 
 export const Chat: React.FC = () => {
+  const classes = useStyles();
+  const { matchId } = useParams();
   const [messages, setMessages] = useState<MessageProps[]>([]);
   const [message, setMessage] = useState('');
   const [active, setActive] = useState(false);
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: any): void => {
     const data = {
       matchId,
       fromUserId,
       toUserId,
       message,
-      // readAt: '',
     };
     event.preventDefault();
     setMessage('');
@@ -48,45 +60,67 @@ export const Chat: React.FC = () => {
     socket.emit('message', data);
   };
 
-  const getMessages = async () => {
-    // Fetch messages with matchId from API
-    const response = await getChatRoomMessages(matchId);
-    setMessages(response.data);
-    setActive(true);
-    console.log(response.data);
+  const handleChange = (event: any): void => {
+    setMessage(event.target.value);
   };
 
-  socket.on('newMessage', (data: any) => {
-    getMessages();
-  });
+  // Send message on key down
+  const handleKeyDown = (event: any): void => {
+    if (event.key === 'Enter' && !event.shiftKey && !event.ctrlKey && !event.altKey) {
+      handleSubmit(event);
+    }
+  };
 
   useEffect(() => {
-    if (!active) {
-      getMessages();
-      console.log('useEffect hook');
-    }
-  });
+    socket.on('message', (data: any) => {
+      setMessages([...messages, data]);
+    });
+
+    socket.on('messageHistory', (data: any) => {
+      // Sort messages by creation date
+      data.sort((a: any, b: any): number => +moment(a.createdAt) - +moment(b.createdAt));
+      setMessages(data);
+    });
+
+
+    return () => {
+      socket.off('message');
+      socket.off('messageHistory');
+    };
+  }, [messages]);
+
+  useEffect(() => {
+    // socket.emit('matches', fromUserId);
+
+    socket.emit('subscribe', matchId);
+  }, [matchId]);
+
+  // useEffect(() => {
+  //   if (!active) {
+  //     // getMessages();
+  //     console.log('useEffect hook');
+  //   }
+  // });
 
   return (
+    <>
+      <div className={classes.chatContainer}>
+        {messages.map((msg: any) => (
+          <Message
+            key={msg.id}
+            data={msg}
+            reverse={msg.fromUserId === fromUserId}
+          />
+        ))}
+      </div>
 
-    <div>
-      {messages.map((x) => (
-        <div key={x.id}>
-          <p>{x.fromUserId}</p>
-          <p>{x.message}</p>
-        </div>
-      ))}
-
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="message" value={message} onChange={(event) => setMessage(event.target.value)} />
-
-        <button type="submit">
-          Send
-        </button>
-      </form>
-
-
-    </div>
+      <MessageInput
+        value={message}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+        onKeyDown={handleKeyDown}
+      />
+    </>
   );
 };
 

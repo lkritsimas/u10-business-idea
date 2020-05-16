@@ -71,7 +71,7 @@ export const Nav: React.FC = () => {
 
   return (
     <nav>
-      <AppBar className={classes.root} elevation={0}>
+      <AppBar className={classes.root} elevation={1}>
         <Paper elevation={0}>
           <Toolbar>
             <Grid

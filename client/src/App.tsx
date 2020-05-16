@@ -38,7 +38,7 @@ export const App: React.FC = () => {
         <Router>
           <Nav />
           <Switch>
-            <Route path="/chat" component={Chat} />
+            <Route path="/chat/:matchId" component={Chat} />
             <Route path="/chats" component={Chats} />
             <Route path="/profile" component={Profile} />
             <Route path="/profileCard" component={ProfileCard} />

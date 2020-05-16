@@ -5,10 +5,12 @@
   "dependencies": {
     "@material-ui/core": "^4.9.12",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.53",
     "@material-ui/styles": "latest",
     "@material-ui/system": "^4.9.10",
     "@types/socket.io-client": "^1.4.32",
     "axios": "^0.19.2",
+    "moment": "^2.25.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
