@@ -20,7 +20,7 @@ export const MessageInputStyle = makeStyles((theme: any) => ({
     minHeight: theme.spacing(5),
   },
   input: {
-    padding: theme.spacing(0),
+    padding: 0,
     '& > textarea': {
       padding: theme.spacing(1),
       maxHeight: theme.spacing(15),

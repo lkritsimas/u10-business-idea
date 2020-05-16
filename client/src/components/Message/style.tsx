@@ -31,18 +31,18 @@ export const MessageStyle = makeStyles((theme: any) => ({
     paddingBottom: 10,
     paddingLeft: 12,
     marginLeft: (props: Props): number => (
-      !props.reverse ? theme.spacing(1) : theme.spacing(0)
+      !props.reverse ? theme.spacing(1) : 0
     ),
     marginRight: (props: Props): number => (
-      props.reverse ? theme.spacing(1) : theme.spacing(0)
+      props.reverse ? theme.spacing(1) : 0
     ),
     borderTopRightRadius: theme.spacing(2),
     borderTopLeftRadius: theme.spacing(2),
     borderBottomRightRadius: (props: Props): number => (
-      !props.reverse ? theme.spacing(2) : theme.spacing(1) / 2
+      !props.reverse ? theme.spacing(2) : 4
     ),
     borderBottomLeftRadius: (props: Props): number => (
-      !props.reverse ? theme.spacing(1) / 2 : theme.spacing(2)
+      !props.reverse ? 4 : theme.spacing(2)
     ),
   },
   time: {

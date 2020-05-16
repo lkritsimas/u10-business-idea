@@ -83,7 +83,7 @@ export const Chat: React.FC = () => {
     });
 
 
-    return () => {
+    return (): void => {
       socket.off('message');
       socket.off('messageHistory');
     };

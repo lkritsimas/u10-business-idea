@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Typography, Avatar, Paper, Fade,
 } from '@material-ui/core';
@@ -7,7 +7,7 @@ import { MessageStyle } from './style';
 
 interface Props {
   data: any;
-  picture?: string;
+  photo?: string;
   reverse?: boolean;
   clicked?: boolean;
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
@@ -15,7 +15,7 @@ interface Props {
 }
 
 export const Message: React.FC<Props> = ({
-  data, picture, reverse, onClick, onKeyDown, clicked,
+  data, photo, reverse, onClick, onKeyDown, clicked,
 }: Props) => {
   const classes = MessageStyle({ reverse: reverse || false });
 
@@ -27,7 +27,7 @@ export const Message: React.FC<Props> = ({
       elevation={0}
     >
       {!reverse ? (
-        <Avatar src={picture} className={classes.avatar} />
+        <Avatar src={photo} className={classes.avatar} />
       ) : ('')}
       <Paper className={classes.message}>
         <Typography variant="body2">{data.message}</Typography>
