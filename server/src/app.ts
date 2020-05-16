@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import socketIo from 'socket.io';
 import http from 'http';
+import { emit } from 'cluster';
 import * as config from '../config/app.json';
 import routes from './routes';
 import { Messages } from './types/messages';
@@ -32,6 +33,42 @@ const io = socketIo(server);
 io.on('connection', (socket: any) => {
   console.log('New client connected');
 
+  socket.on('matches', async (userId: string) => {
+    console.log('Viewed matches');
+    // await socket.join(userId);
+
+    // const matches = await models.profiles.findOne({
+    //   where: { userId },
+    //   include: [
+    //     { model: models.users },
+    //   ],
+    // });
+
+    const matches = await models.profiles.findAll({
+      where: { userId },
+      include: [
+        { model: models.users },
+        { model: models.messages },
+      ],
+    });
+
+    // socket.in(userId).emit('matches', matches);
+    socket.emit('matches', matches);
+  });
+
+  socket.on('subscribe', async (matchId: string) => {
+    console.log('Joining ', matchId);
+    socket.join(matchId);
+
+    const messages = await models.messages.findAll({
+      where: { matchId },
+      order: [['createdAt', 'DESC']],
+      limit: 10,
+    });
+
+    io.in(matchId).emit('messageHistory', messages);
+  });
+
   socket.on('message', async (data: Messages) => {
     const {
       matchId,
@@ -41,11 +78,11 @@ io.on('connection', (socket: any) => {
       // readAt,
     } = data;
 
-    const match = await models.messages.findAll({
-      where: { matchId },
-    });
+    // const match = await models.messages.findAll({
+    //   where: { matchId },
+    // });
 
-    const chatMessage = await models.messages.create({
+    const newMessage = await models.messages.create({
       matchId,
       fromUserId,
       toUserId,
@@ -53,7 +90,9 @@ io.on('connection', (socket: any) => {
       // readAt,
     });
 
-    io.emit('newMessage', chatMessage);
+
+    io.in(matchId).emit('message', newMessage);
+    // io.emit('message', data.message);
   });
 
 
@@ -62,5 +101,6 @@ io.on('connection', (socket: any) => {
   });
 });
 
-
-server.listen(config.port, () => console.log(`Listening on port ${config.port}`));
+models.sequelize.sync({}).then(() => {
+  server.listen(config.port, () => console.log(`Listening on port ${config.port}`));
+});

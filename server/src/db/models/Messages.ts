@@ -16,21 +16,33 @@ module.exports = (sequelize: Sequelize) => {
   }) as MessagesStatic;
 
   // @ts-ignore
-  messages.associate = ({ users, matches }) => {
+  messages.associate = ({ users, profiles, matches }) => {
     messages.belongsTo(users, {
       foreignKey: 'fromUserId',
       onDelete: 'cascade',
     });
 
-    messages.belongsTo(users, {
-      foreignKey: 'toUserId',
-      onDelete: 'cascade',
-    });
-
-    messages.belongsTo(matches, {
+    messages.belongsTo(profiles, {
       foreignKey: 'matchId',
       onDelete: 'cascade',
     });
+
+    messages.belongsToMany(matches, {
+      through: profiles,
+      foreignKey: 'matchId',
+      onDelete: 'cascade',
+    });
+
+    // messages.belongsToMany(users, {
+    //   through: profiles,
+    //   foreignKey: 'matchId',
+    //   onDelete: 'cascade',
+    // });
+
+    // messages.belongsTo(matches, {
+    //   foreignKey: 'matchId',
+    //   onDelete: 'cascade',
+    // });
   };
 
   return messages;

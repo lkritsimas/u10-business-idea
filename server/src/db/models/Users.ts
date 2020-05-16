@@ -99,26 +99,34 @@ module.exports = (sequelize: Sequelize) => {
   }) as UsersStatic;
 
   // @ts-ignore
-  users.associate = ({ matches, messages, swipes }) => {
+  users.associate = ({
+    profiles, swipes, matches, messages,
+  }: any) => {
+    users.hasMany(profiles, {
+      as: 'matches',
+      foreignKey: 'userId',
+      sourceKey: 'id',
+    });
+
     users.hasMany(swipes, {
       foreignKey: 'fromUserId',
       onDelete: 'cascade',
     });
 
-    users.hasMany(matches, {
-      foreignKey: 'userId1',
-      onDelete: 'cascade',
-    });
+    // users.hasMany(matches, {
+    //   foreignKey: 'userId1',
+    //   onDelete: 'cascade',
+    // });
 
-    users.hasMany(matches, {
-      foreignKey: 'userId2',
-      onDelete: 'cascade',
-    });
+    // users.hasMany(matches, {
+    //   foreignKey: 'userId2',
+    //   onDelete: 'cascade',
+    // });
 
-    users.hasMany(messages, {
-      foreignKey: 'fromUserId',
-      onDelete: 'cascade',
-    });
+    // users.hasMany(messages, {
+    //   foreignKey: 'fromUserId',
+    //   onDelete: 'cascade',
+    // });
 
     users.hasMany(messages, {
       foreignKey: 'toUserId',
