@@ -8,4 +8,6 @@ export default {
   number: 'Number',
   project: 'Projekt',
   projects: 'Projekt',
+  send: 'Skicka',
+  'ChatMessage.type': 'Skriv ett meddelande...',
 };
