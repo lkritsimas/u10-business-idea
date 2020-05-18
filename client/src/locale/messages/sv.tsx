@@ -8,4 +8,6 @@ export default {
   number: 'Number',
   project: 'Projekt',
   projects: 'Projekt',
+  messages: 'Meddelanden',
+  'MatchList.newMatches': 'Nya matchningar',
 };
