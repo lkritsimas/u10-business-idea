@@ -10,4 +10,6 @@ export default {
   projects: 'Projekt',
   messages: 'Meddelanden',
   'MatchList.newMatches': 'Nya matchningar',
+  send: 'Skicka',
+  'ChatMessage.type': 'Skriv ett meddelande...',
 };
