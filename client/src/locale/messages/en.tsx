@@ -9,6 +9,8 @@ export default {
   commit: 'Commit',
   project: 'Project',
   projects: 'Projects',
+  messages: 'Messages',
+  'MatchList.newMatches': 'New Matches',
   send: 'Send',
   'ChatMessage.type': 'Type a message...',
 };
