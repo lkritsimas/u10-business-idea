@@ -12,4 +12,7 @@ export default {
   'MatchList.newMatches': 'Nya matchningar',
   send: 'Skicka',
   'ChatMessage.type': 'Skriv ett meddelande...',
+  'Upload.dropImage': 'Släpp bild',
+  'Upload.uploadFromGallery': 'Ladda upp från <b>Galleri</b>',
+  'Upload.captureFromCamera': 'Ny bild från <b>Kamera</b>',
 };

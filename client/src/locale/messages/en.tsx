@@ -13,4 +13,7 @@ export default {
   'MatchList.newMatches': 'New Matches',
   send: 'Send',
   'ChatMessage.type': 'Type a message...',
+  'Upload.dropImage': 'Drop image',
+  'Upload.uploadFromGallery': 'Upload from Gallery',
+  'Upload.captureFromCamera': 'Capture from Camera',
 };

@@ -14,6 +14,7 @@ import Chats from './components/Chats';
 import Profile from './components/Profile';
 import Settings from './components/Settings';
 import { SelectLanguage } from './components/SelectLanguage';
+import { ImageUploadForm } from './components/ImageUploadForm/ImageUploadForm';
 
 export const App: React.FC = () => {
   const [darkMode, setDarkMode] = useState('dark');
@@ -42,12 +43,13 @@ export const App: React.FC = () => {
           <Route path="/profile" component={Profile} />
           <Route path="/settings" component={Settings} exact />
           <Route path="/settings/language" component={SelectLanguage} />
+          <Route path="/upload" component={ImageUploadForm} />
         </Switch>
       </Router>
-      <UiSwitch
+      {/* <UiSwitch
         checked={darkMode === 'dark'}
         onClick={(): void => (darkMode === 'dark' ? setDarkMode('light') : setDarkMode('dark'))}
-      />
+      /> */}
     </ThemeProvider>
   );
 };
