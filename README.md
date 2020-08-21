@@ -19,7 +19,11 @@ Here's how you get up and running after cloning the repo.
 
 `npm run test`
 
-## Design & budget 
+## Design, personas & budget 
+**Design sketches**
+
+https://github.com/lkritsimas/u10-business-idea/tree/master/design
+
 **Figma**
 
 https://www.figma.com/file/DCjKdgwoGWzGVXQD3b79Yn/Tinder-app
@@ -27,3 +31,7 @@ https://www.figma.com/file/DCjKdgwoGWzGVXQD3b79Yn/Tinder-app
 **Budget**
 
 https://docs.google.com/spreadsheets/d/1EBOX3gX8uitUHrOr3hg2axiDh-EnqVSVe43sZPalnQY
+
+**Personas**
+
+https://github.com/lkritsimas/u10-business-idea/tree/master/assets/personas
