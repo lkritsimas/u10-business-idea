@@ -2,6 +2,11 @@
 Interested in dating or collaboration?
 Sign up with your GitHub account to match with other developers around the world!
 
+## Made with
+React, Node, Express.js, Material-UI, TypeScript, Sequelize + PostgreSQL.
+
+*Follows the Airbnb style guide.* 
+
 ## Setup
 Here's how you get up and running after cloning the repo.
 
@@ -18,6 +23,7 @@ Here's how you get up and running after cloning the repo.
 4. `npm run start`
 
 #### Running tests
+*Unit tests are written using Chai, Mocha and Sinon.*
 
 `npm run test`
 
