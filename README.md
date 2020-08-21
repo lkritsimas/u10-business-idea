@@ -2,6 +2,23 @@
 Interested in dating or collaboration?
 Sign up with your GitHub account to match with other developers around the world!
 
+## Setup
+Here's how you get up and running after cloning the repo.
+
+### Client
+
+1. `npm install`
+2. `npm run start`
+
+### Server
+
+1. `npm install`
+2. `npm run start`
+
+#### Running tests
+
+`npm run test`
+
 ## Design & budget 
 **Figma**
 
