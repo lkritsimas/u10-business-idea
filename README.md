@@ -12,8 +12,10 @@ Here's how you get up and running after cloning the repo.
 
 ### Server
 
-1. `npm install`
-2. `npm run start`
+1. Install PostgreSQL
+2. Install PostGIS (https://postgis.net/install/)
+3. `npm install`
+4. `npm run start`
 
 #### Running tests
 
